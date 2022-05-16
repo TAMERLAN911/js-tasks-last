@@ -4,9 +4,9 @@
  * а вместо имени и отчества будут инициалы.
  */
 
-function initials(firstname, lastname, surname) {
-  // тут твой код
-}
+ function initials(firstname, lastname, surname) {
+  return lastname + ' ' + firstname[0] + "." + surname[0] + '.'
+  }
 
 console.log(initials('Интукод', 'Джаваскриптов', 'Объектович')) 
 // должен вывести "Джаваскриптов И.О."
@@ -17,7 +17,13 @@ console.log(initials('Интукод', 'Джаваскриптов', 'Объек
  */
 
 function sum(numbers) {
- // тут твой код
+let result = 0
+for (let i = 0; i < numbers.length; i++) {
+if (numbers[i] % 2 === 1) {
+  result += numbers[i]
+}
+}
+return result
 }
 
 console.log(sum([1, 3, 6, 11, 98, 7, 1]))
@@ -28,9 +34,16 @@ console.log(sum([1, 3, 6, 11, 98, 7, 1]))
  * Функция должна вернуть true, если сумма чисел из обеих массивов одинаковая, 
  * иначе функция должна вернуть false.
  */
-
-function hasEqualSums(first, second) {
- // тут твой код
+ function hasEqualSums(first, second) {
+  let firstSum = 0;
+  let secondSum = 0;
+  for(let i = 0; i < first.length; i++){
+    firstSum+=first[i]
+  }
+  for(let j = 0; j < second.length; j++){
+    secondSum+=second[j]
+  }
+  return firstSum === secondSum
 }
 
 console.log(hasEqualSums([11, 22], [1, 20, 10, 1, 1]));
@@ -39,7 +52,7 @@ console.log(hasEqualSums([11, 22], [1, 20, 10, 1, 1]));
 console.log(hasEqualSums([4, 4], [3, 6]));
 // должен вернуть false, т.к. 4+4=8, а 3+6=9
 
-/*******************************************************************
+/*******************************************************************\
  * Напиши функцию, которая принимает на вход три параметра. 
  * В первом параметре передается массив из чисел, во втором параметре передается 
  * искомое число, а в третьем количество повторений этого числа. 
@@ -49,6 +62,16 @@ console.log(hasEqualSums([4, 4], [3, 6]));
 
 function repeatsXTimes(numbers, needle, count) {
   // тут твой код
+  let result = 0
+  for(let i = 0; i < numbers.length;i++){
+    if(numbers[i] === needle){
+      result++
+    }
+  }
+  if(result === count){
+    return true
+  }
+  return false
 }
 
 console.log(repeatsXTimes([1, 5, 1, 3, 1], 1, 3));
@@ -65,10 +88,16 @@ console.log(repeatsXTimes([1, 2, 1, 2, 4], 2, 2));
  * Функция должна вернуть массив, в котором остались только те имена, длина которых соответствует указанному во втором параметре числу.
  */
 
-function filterNames(names) {
-  // тут твой код
-}
-
+ function filterNames(names) {
+  let result = []
+    for(let i = 0; i < names.length;i++){
+      if(names[i].length === 4){
+        result.push(names[i])
+      }
+    }
+    return result
+  }
+  
 console.log(filterNames(['into', 'code', 'js', 'html', 'git'], 4));
 // должен вернуть массив ['into', 'code', 'html']
 
@@ -79,7 +108,13 @@ console.log(filterNames(['into', 'code', 'js', 'html', 'git'], 4));
  */
 
 function searchWord(words, text) {
-  // тут твой код
+  let arr = text.split(' ')
+  for(let i = 0; i < words.length; i++){
+    if(words.includes(arr[i])){
+      return true
+    }
+  }
+  return false
 }
 
 console.log(searchWord(['js', 'css', 'php'], 'я изучаю css')); // true
@@ -92,7 +127,17 @@ console.log(searchWord(['js', 'css', 'php'], 'я изучаю css и js')); // t
  */
 
 function opposition(numbers) {
-  // твой код
+  let min = 0
+  let max = 0
+  for(let i = 0; i < numbers.length;i++){
+  if(min > numbers[i]){
+    min = numbers[i]
+  }  
+    if(max < numbers[i]){
+      max = numbers[i]
+    }
+  }
+  return [max,min]
 }
 
 console.log(opposition([1, -4, 6, -144, 5])); // [-144, 6]
@@ -106,8 +151,18 @@ console.log(opposition([1, -4, 6, -144, 5])); // [-144, 6]
  */
 
 function cutText(text, limit) {
-  // твой код
+  text = text.split(' ')
+  let arr = []
+  if(text.length > limit){
+    for(let i = 0; i < limit;i++){
+      arr.push(text[i])
+        
+    }
+    return arr.join(' ') + '...'
+  }
+  return text.join(' ')
 }
+
 
 console.log(cutText('Всё в мире подорожало', 5))
 // должен вернуть "Всё в мире подорожало", т.к. количество слов в тексте не больше 5
